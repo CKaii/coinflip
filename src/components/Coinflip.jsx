@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function Coinflip() {
-  const [flip, setFlip] = useState({ heads: 0, tails: 0 });
+  const [flip, setFlip] = useState({ heads: 0, tails: 0, coin: 0 });
 
   function handleClick() {
     let randomNumber = Math.floor(Math.random() * 2);
@@ -11,11 +11,13 @@ function Coinflip() {
         return {
           heads: flip.heads + 1,
           tails: prevFlip.tails,
+          coin: 0,
         };
       } else if (randomNumber === 1) {
         return {
           heads: prevFlip.heads,
           tails: flip.tails + 1,
+          coin: 1,
         };
       }
     });
@@ -27,7 +29,7 @@ function Coinflip() {
   return (
     <div>
       <h1>Coinflip Simulator</h1>
-      {flip.heads === 0 ? (
+      {flip.coin === 0 ? (
         <img
           className="coinImage"
           src={'https://tinyurl.com/react-coin-heads-jpg'}
